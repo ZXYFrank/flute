@@ -1,0 +1,9 @@
+file(GLOB test_cpps "*.cc")
+message(STATUS ${test_cpps})
+
+foreach (file ${test_cpps})
+    get_filename_component (base_name ${file} NAME_WE)
+    add_executable(${base_name} ${base_name}.cc)
+    target_link_libraries(${base_name} flute_common)
+    target_link_libraries(${base_name} flute_net)
+endforeach ()

@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "cmake_debug",
+			"command": "cmake",
+			"args": [
+				"-DCMAKE_BUILD_TYPE=debug",
+				"-DCMAKE_INSTALL_PREFIX=./",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"${workspaceFolder}"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/build/"
+			}
+		},
+		{
+			"label": "make",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceFolder}/build/"
+			},
+			"command": "make"
+		},
+		{
+			"label": "create_build_directory",
+			"type": "shell",
+			"command": "mkdir -p ${workspaceFolder}/build/"
+		},
+		{
+			"label": "cmake_debug_make",
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"create_build_directory",
+				"cmake_debug",
+				"make"
+			],
+			"problemMatcher": []
+		}
+	]
+}
